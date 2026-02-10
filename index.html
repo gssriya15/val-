@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    background: #ffd6e7;
+    font-family: 'Georgia', cursive;
+    overflow: hidden;
+}
+
+/* ---------- PAGES ---------- */
+.page {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+}
+.page.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* ---------- FLOATING HEARTS ---------- */
+.heart {
+    position: absolute;
+    font-size: 22px;
+    animation: float 6s linear infinite;
+}
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* ---------- SVG HEART ---------- */
+svg {
+    width: 360px;
+    height: 320px;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+    padding: 15px 35px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.yes {
+    background: #ff4081;
+    color: white;
+}
+.no {
+    background: #555;
+    color: white;
+    position: absolute;
+}
+
+/* ---------- FINAL PAGE ---------- */
+.cat-image {
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+.final-text {
+    font-size: 28px;
+    color: #b30047;
+    margin-top: 20px;
+}
+.pookie {
+    font-size: 22px;
+    color: #800040;
+    font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <svg viewBox="0 0 300 260">
+        <path
+            d="M150 240
+               L20 120
+               C-20 60 40 0 120 40
+               C150 60 150 60 180 40
+               C260 0 320 60 280 120
+               Z"
+            fill="#ff5c8a"
+        />
+        <text x="150" y="125"
+              text-anchor="middle"
+              fill="white"
+              font-size="24"
+              font-weight="bold">
+            <tspan x="150" dy="-5">Will you be</tspan>
+            <tspan x="150" dy="30">my Valentine?</tspan>
+        </text>
+    </svg>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1 style="color:#b30047;">So… what do you say? 💕</h1>
+    <div style="position:relative;width:300px;height:120px;">
+        <button class="yes" onclick="goFinal()">YES 💖</button>
+        <button class="no" id="noBtn">NO 🙃</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <img src="https://i.pinimg.com/736x/55/29/24/552924c5d913f43785c58e07371f8e53.jpg"
+         class="cat-image">
+    <div class="final-text">I knew you would say YES 💖</div>
+    <div class="pookie">Just for my pookie 💕</div>
+</div>
+
+<script>
+/* FLOATING HEARTS */
+for (let i = 0; i < 30; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(h);
+}
+
+/* PAGE SWITCH */
+document.getElementById("page1").onclick = () => showPage(2);
+function showPage(n) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById("page" + n).classList.add("active");
+}
+
+/* NO BUTTON RUNS */
+const noBtn = document.getElementById("noBtn");
+noBtn.onmouseover = () => {
+    noBtn.style.left = Math.random() * 180 + "px";
+    noBtn.style.top = Math.random() * 80 + "px";
+};
+
+function goFinal() {
+    showPage(3);
+}
+</script>
+
+</body>
+</html>
