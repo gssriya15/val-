@@ -12,7 +12,6 @@ body {
     overflow: hidden;
 }
 
-/* ---------- PAGES ---------- */
 .page {
     display: none;
     height: 100vh;
@@ -25,7 +24,6 @@ body {
     flex-direction: column;
 }
 
-/* ---------- FLOATING HEARTS ---------- */
 .heart {
     position: absolute;
     font-size: 22px;
@@ -37,13 +35,11 @@ body {
     100% { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* ---------- SVG HEART ---------- */
 svg {
     width: 360px;
     height: 320px;
 }
 
-/* ---------- BUTTONS ---------- */
 button {
     padding: 15px 35px;
     font-size: 18px;
@@ -61,7 +57,6 @@ button {
     position: absolute;
 }
 
-/* ---------- FINAL PAGE ---------- */
 .cat-image {
     width: 300px;
     border-radius: 20px;
@@ -82,7 +77,6 @@ button {
 
 <body>
 
-<!-- PAGE 1 -->
 <div class="page active" id="page1">
     <svg viewBox="0 0 300 260">
         <path
@@ -105,7 +99,6 @@ button {
     </svg>
 </div>
 
-<!-- PAGE 2 -->
 <div class="page" id="page2">
     <h1 style="color:#b30047;">So… what do you say? 💕</h1>
     <div style="position:relative;width:300px;height:120px;">
@@ -114,7 +107,6 @@ button {
     </div>
 </div>
 
-<!-- PAGE 3 -->
 <div class="page" id="page3">
     <img src="https://i.pinimg.com/736x/55/29/24/552924c5d913f43785c58e07371f8e53.jpg"
          class="cat-image">
@@ -123,7 +115,7 @@ button {
 </div>
 
 <script>
-/* FLOATING HEARTS */
+
 for (let i = 0; i < 30; i++) {
     const h = document.createElement("div");
     h.className = "heart";
@@ -133,14 +125,12 @@ for (let i = 0; i < 30; i++) {
     document.body.appendChild(h);
 }
 
-/* PAGE SWITCH */
 document.getElementById("page1").onclick = () => showPage(2);
 function showPage(n) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById("page" + n).classList.add("active");
 }
 
-/* NO BUTTON RUNS */
 const noBtn = document.getElementById("noBtn");
 noBtn.onmouseover = () => {
     noBtn.style.left = Math.random() * 180 + "px";
